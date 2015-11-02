@@ -366,10 +366,84 @@ $S(15,3) = 2,375,101$, $S(100,5)= 10 ^{68}$ !!
 
 }
 \end{itemize}
-
+\item\textbf{Peak and Valley}
+\begin{itemize}
+\item Analyzing the intensity distribution of the image
+\item Threshold = local minimum between the peaks of the distribution
+\item It works very well, when the histogram has two definite pics
+\item This is not the case for all the images
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+%-------------
+\begin{frame}
+\frametitle{Clustering techniques}
+\begin{block}{Optimal Thresholding}
+\begin{itemize}
+\item \textbf{Otsu}
+\begin{itemize}
+\item Separating the image into two parts by a threshold, where each part has its own statistics (mean and variance)
+\item Homogeneity of each group is measure by \textit{within group variance}
+\item Optimal threshold, minimizes the within group variance, thus maximizing the homogeneity of each group
+\item let $p_{o}$ and $p_{b}$ represent the probabilities of Object and background, respectively
+$$ p_{o} = \sum\limits_{T}^{i=0}P(i) \qquad p_{b}= \sum\limits_{i=T+1}^{255}P(i) \qquad P(i) = h(i)/N $$ 
+\noindent where $h(i)$ is the histogram of an N pixels 
+\end{itemize}
 \end{itemize}
 
 \end{block}
+\end{frame}
+%-------------------
+\begin{frame}
+\frametitle{Clustering Techniques}
+\begin{block}{Optimal Thresholding}
+\begin{itemize}
+\item\textbf{Otsu}
+\scriptsize{
+$$\mu_{o}(T) = \sum\limits_{i=0}^{T}iP(i)/p_{o}(T) \qquad \mu_{b}(T) = \sum\limits_{i=T+1}^{255}iP(i)/p_{b}(T) $$
+$$\sigma_{o}^{2}(T) = \sum\limits_{i=0}^{T}[i-\mu_{o}(T)]^{2}P(i)/p_{o}(T) $$
+$$\sigma_{b}^{2} =\sum\limits_{i=T+1}^{255} [i-\mu_{b}(T)]^{2}P(i)/p_{b}(T)  $$ 
+$$ \sigma_{w}^{2}(T) =  \sigma_{0}^{2}(T)p_{o}(T)+\sigma_{b}^{2}(T)p_{b}(T)$$
+\noindent $\sigma_{w}$ is the within group variance and we determine the optimum $T$ by minimizing the $\sigma_{w}$}
+\end{itemize}
+
+\end{block}
+\end{frame}
+%------------
+\begin{frame}
+\frametitle{Clustering Techniques}
+\begin{block}{K-means}
+\begin{itemize}
+\scriptsize{
+\item Successive generation of clusters, minimizing the cost function $J$ to find the best clusters
+\item Prior knowledge: \# clusters, ownership of each pixel to only one cluster
+\item Cluster membership criteria: minimum distance from the pixel to the center $\phi_{j}$ of the cluster $C_{j}$ 
+$$\phi_{j} = 1/N \sum\limits_{X_{i}\in C_{j}}X_{i}, \qquad d(x_{i}, \phi_{j}) = \Vert X_{i} - \phi_{j}\Vert $$
+\item cost function $J$:
+$$J = \sum\limits_{i=1}^{N} \sum\limits_{j=1}^{K} u_{ij}\times d(x_{i}, \phi_{j})$$
+\noindent $u_{ij}$ is the coefficient related to the ownership of a pixel $i$ to cluster $j$\\
+$$u_{ij} = 1 \quad \text{d is minimum}, \qquad u_{ij} = 0, \quad otherwie$$
+}
+\end{itemize}
+
+\end{block}
+\end{frame}
+%-------------
+\begin{frame}
+\frametitle{Clustering Techniques}
+\begin{block}{K-means}
+\begin{enumerate}
+\item Knowing the $K$ (\# clusters) determine the initial cluster centers $\phi_{j}, \quad j = 1: K$
+\item Assign each pixel to its nearest cluster $C_{j}$
+\item Compute the new cluster centers $\phi_{j}$
+\item If any pixel has changed its cluster, then go to second step, otherwise the algorithm has found the optimal clusters
+\item The final goal is to minimize the $J$ cost
+
+\end{enumerate}
+
+\end{block}
+
 \end{frame}
 %-------------
 \section{Edge Based}
