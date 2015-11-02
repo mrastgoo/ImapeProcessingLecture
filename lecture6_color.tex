@@ -207,12 +207,12 @@ Mixture of pigments\\
 \end{block}
 \end{frame}
 %-----------------
-\begin{frame}
-\frametitle{Color fundamentals}
-\begin{block}{CIE Chromaticity diagram}
-\centering{\includegraphics[width = 0.55\textwidth]{images/L6_CIEdiagram.png}}
-\end{block}
-\end{frame}
+%\begin{frame}
+%\frametitle{Color fundamentals}
+%\begin{block}{CIE Chromaticity diagram}
+%\centering{\includegraphics[width = 0.55\textwidth]{images/L6_CIEdiagram.png}}
+%\end{block}
+%\end{frame}
 %---------------
 \begin{frame}
 \frametitle{Color fundamentals}
@@ -471,7 +471,7 @@ I = \frac{R+G+B}{3}
 \item re-arrange H $\in [0, 360^{\circ}]$ 
 \item[]
 \[\text{RG sector  , } 
-0^{\circ} \geq H < 120^{\circ} \rightarrow
+0^{\circ} \leq H < 120^{\circ} \rightarrow
 \begin{cases}
 B = I(1-S)\\
 R =  I[1+\frac{S\cos H}{\cos(60^{\circ}-H)}]\\
@@ -480,7 +480,7 @@ G = 3I - (R+B)
 \]
 \item[]
 \[ \text{GB sector  , } 
-120^{\circ} \geq H < 240^{\circ} \rightarrow
+120^{\circ} \leq H < 240^{\circ} \rightarrow
 \begin{cases}
 H = H - 120^{\circ}\\
 R = I(1-S)\\
@@ -490,7 +490,7 @@ B = 3I - (R+G)
 \]
 \item[]
 \[ \text{BR sector  , } 
-240^{\circ} \geq H < 360^{\circ} \rightarrow
+240^{\circ} \leq H < 360^{\circ} \rightarrow
 \begin{cases}
 H = H - 240^{\circ}\\
 G = I(1-S)\\
